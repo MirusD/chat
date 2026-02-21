@@ -3,10 +3,10 @@ import { IMessage } from './types';
 import { MessageState, Action, messageReducer, initialState } from './slice';
 
 interface MessageContextType {
-    messages: IMessage[];
-    addMessage: (tempId: string, text: string) => void;
-    updateStatus: (id: string, status: IMessage['status']) => void;
-    confirmMessage: (tempId: string, realId: string) => void;
+    getMessages: (chatId: string) => IMessage[];
+    addMessage: (chatId: string, tempId: string, text: string, user: string) => void;
+    updateStatus: (chatId: string, id: string, status: IMessage['status']) => void;
+    confirmMessage: (chatId: string, tempId: string, realId: string) => void;
 }
 
 const MessageContext = createContext<MessageContextType | null>(null);
@@ -14,27 +14,29 @@ const MessageContext = createContext<MessageContextType | null>(null);
 export const MessageProvider =  ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(messageReducer, initialState);
 
-    const addMessage = (tempId: string, text: string) => {
-        const newMsg: IMessage = {
-            id: tempId,
-            text,
-            user: 'User',
-            status: 'pending'
-        };
-        dispatch({ type: 'ADD', payload: newMsg });
+    const getMessages = (chatId: string) => state[chatId] || [];
+
+    const addMessage = (chatId: string, tempId: string, text: string, user: string) => {
+        dispatch({ 
+            type: 'ADD', 
+            payload: {
+                chatId,
+                msg: {id: tempId, text, user, status: 'pending' }
+            }
+        });
     };
 
-    const updateStatus = (id: string, status: IMessage['status']) => {
-        dispatch({ type: 'UPDATE_STATUS', payload: { id, status }});
+    const updateStatus = (chatId: string, id: string, status: IMessage['status']) => {
+        dispatch({ type: 'UPDATE_STATUS', payload: { chatId, id, status }});
     };
 
-    const confirmMessage = (tempId: string, realId: string) => {
-        dispatch({ type: 'CONFIRM_MESSAGE', payload: { tempId, realId }});
+    const confirmMessage = (chatId: string, tempId: string, realId: string) => {
+        dispatch({ type: 'CONFIRM_MESSAGE', payload: { chatId, tempId, realId }});
     };
 
     return (
         <MessageContext.Provider value={{ 
-            messages: state.messages, 
+            getMessages,
             addMessage, 
             updateStatus,
             confirmMessage

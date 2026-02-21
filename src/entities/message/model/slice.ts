@@ -1,38 +1,47 @@
 import { IMessage } from './types';
 
 export interface MessageState {
-    messages: IMessage[];
+    [chatId: string]: IMessage[];
 }
 
 export type Action = 
-    | { type: 'ADD'; payload: IMessage }
-    | { type: 'UPDATE_STATUS'; payload: { id: string; status: IMessage['status'] }}
-    | { type: 'CONFIRM_MESSAGE'; payload: { tempId: string; realId: string }};
+    | { type: 'ADD'; payload: { chatId: string; msg: IMessage } }
+    | { type: 'UPDATE_STATUS'; payload: { chatId: string; id: string; status: IMessage['status'] }}
+    | { type: 'CONFIRM_MESSAGE'; payload: { chatId: string; tempId: string; realId: string }};
 
-export const initialState: MessageState = {
-    messages: []
-};
+export const initialState: MessageState = {};
 
 export const messageReducer = (state: MessageState = initialState, action: Action): MessageState => {
     switch (action.type) {
         case 'ADD':
-            return { messages: [...state.messages, action.payload] };
+            const { chatId, msg } = action.payload;
+            const currentMessages = state[chatId] || [];
+            return {
+                ...state,
+                [chatId]: [...currentMessages, msg] 
+            };
 
         case 'UPDATE_STATUS':
-            return {
-                messages: state.messages.map(msg =>
-                    msg.id === action.payload.id ? {...msg, status: action.payload.status } : msg
-                ),
-            };
+            {
+                const messages = state[action.payload.chatId] || []
+                return {
+                    ...state,
+                    [action.payload.chatId]: messages.map(msg =>
+                        msg.id === action.payload.id ? {...msg, status: action.payload.status } : msg
+                    ),
+                };
+            }
 
         case 'CONFIRM_MESSAGE':
+            const messages = state[action.payload.chatId] || [];
             return {
-                messages: state.messages.map(msg =>
+                ...state,
+                [action.payload.chatId]: messages.map(msg =>
                     msg.id === action.payload.tempId
-                        ? { ...msg, id: action.payload.realId, status: 'sent'}
+                        ? { ...msg, Id: action.payload.realId, status: 'sent' }
                         : msg
-                ),
-            };
+                ),        
+            };    
 
         default: 
             return state;
