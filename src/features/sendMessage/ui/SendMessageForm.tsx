@@ -1,23 +1,33 @@
 import React, { useState } from 'react';
 import { Button, Input } from '../../../shared';
 import { useMessages } from '../../../entities/message';
+import { sendMessageToServer } from '../../../shared/api/chatApi';
 
 export const SendMessageForm = () => {
     const [text, setText] = useState('');
-    const { addMessage, updateStatus } = useMessages();
+    const { addMessage, updateStatus, confirmMessage } = useMessages();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleSend = () => {
-        if (!text) return;
+    const handleSend = async () => {
+        if (!text || isLoading) return;
 
         const tempId = Date.now().toString();
+
         addMessage(tempId, text);
-
-        setTimeout(() => {
-            updateStatus(tempId, 'sent');
-            console.log('Message delivered (mock)');
-        }, 1000);
-
         setText('');
+
+        setIsLoading(true);
+
+        try {
+            const response = await sendMessageToServer(text);
+            confirmMessage(tempId, response.messageId);
+        } catch (error) {
+            console.error('Fail to send', error);
+            updateStatus(tempId, 'error');
+            alert('Ошибка отправки сообщения!');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (

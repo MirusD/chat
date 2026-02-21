@@ -12,8 +12,13 @@ export const MessageCard = ({ message }: { message: IMessage }) => {
         }}>
             <strong>{message.user}: </strong>
             <span>{message.text}</span>
-      {message.status === 'pending' && <span style={{float: 'right', fontSize: '10px'}}>⏳</span>}
-      {message.status === 'sent' && <span style={{float: 'right', fontSize: '10px'}}>✅</span>}
+
+            <span style={{float: 'right', fontSize: '12px'}}>
+                {message.status === 'pending' && '⏳'}
+                {message.status === 'sent' && '✅'}
+                {message.status === 'error' && '❌'}
+            </span>
+
         </div>
-    )
-}
+    );
+};

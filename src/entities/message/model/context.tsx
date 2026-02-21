@@ -4,8 +4,9 @@ import { MessageState, Action, messageReducer, initialState } from './slice';
 
 interface MessageContextType {
     messages: IMessage[];
-    addMessage: (id: string, text: string) => void;
+    addMessage: (tempId: string, text: string) => void;
     updateStatus: (id: string, status: IMessage['status']) => void;
+    confirmMessage: (tempId: string, realId: string) => void;
 }
 
 const MessageContext = createContext<MessageContextType | null>(null);
@@ -13,9 +14,9 @@ const MessageContext = createContext<MessageContextType | null>(null);
 export const MessageProvider =  ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(messageReducer, initialState);
 
-    const addMessage = (id: string, text: string) => {
+    const addMessage = (tempId: string, text: string) => {
         const newMsg: IMessage = {
-            id,
+            id: tempId,
             text,
             user: 'User',
             status: 'pending'
@@ -24,11 +25,20 @@ export const MessageProvider =  ({ children }: { children: ReactNode }) => {
     };
 
     const updateStatus = (id: string, status: IMessage['status']) => {
-        dispatch({ type: 'UPDATE_STATUS', payload: {id, status }});
-    }
+        dispatch({ type: 'UPDATE_STATUS', payload: { id, status }});
+    };
+
+    const confirmMessage = (tempId: string, realId: string) => {
+        dispatch({ type: 'CONFIRM_MESSAGE', payload: { tempId, realId }});
+    };
 
     return (
-        <MessageContext.Provider value={{ messages: state.messages, addMessage, updateStatus}}>
+        <MessageContext.Provider value={{ 
+            messages: state.messages, 
+            addMessage, 
+            updateStatus,
+            confirmMessage
+        }}>
             {children}
         </MessageContext.Provider>
     );
