@@ -12,11 +12,9 @@ const AppRouter = () => {
     };
 
     return (
-        <>
-            <MessageProvider>
-                <MainPage />
-            </MessageProvider>
-        </>
+        <MessageProvider>
+            <MainPage />
+        </MessageProvider>
     );
 };
 
