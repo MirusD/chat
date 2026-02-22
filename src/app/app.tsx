@@ -1,24 +1,6 @@
-import { UserProvider, useUser } from 'entities/user';
-import { MessageProvider } from 'entities/message';
-import { ChatProvider } from 'entities/chat';
-import { LoginPage } from 'features/auth/ui/LoginPage';
-import { MainPage } from 'pages/main';
+import { UserProvider } from 'entities/user';
+import { AppRouter } from './routes';
 
-const AppRouter = () => {
-    const { isAuth } = useUser();
-
-    if (!isAuth) {
-        return <LoginPage />;
-    };
-
-    return (
-        <ChatProvider>
-            <MessageProvider>
-                <MainPage />
-            </MessageProvider>
-        </ChatProvider>
-    );
-};
 
 export const App = () => {
     return (

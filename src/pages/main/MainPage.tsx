@@ -1,5 +1,5 @@
-import { ChatRoom } from 'widgets/chatRoom';
 import { Header } from 'widgets/Header';
+import { ChatRoom } from 'widgets/chatRoom';
 import { SideBar } from 'widgets/sidebar'
 
 export const MainPage = () => {
