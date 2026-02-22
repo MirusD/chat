@@ -6,7 +6,7 @@ export const MainPage = () => {
     return (
         <>
             <Header />
-            <div style={{ display: 'flex', height: 'calc(100vh - 60px)' }}>
+            <div style={{ display: 'flex', height: 'calc(100vh - 80px)' }}>
                 <SideBar />
                 <ChatRoom />
             </div>

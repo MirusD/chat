@@ -3,11 +3,13 @@ import { Button, Input } from 'shared';
 import { useMessages } from 'entities/message';
 import { sendMessageToServer } from 'shared/api/chatApi';
 import { useChats } from 'entities/chat';
+import { useNotification } from 'entities/notification';
 
 export const SendMessageForm = () => {
     const [text, setText] = useState('');
     const { activeChatId, updateLastMessage } = useChats();
     const { addMessage, updateStatus, confirmMessage } = useMessages();
+    const { showNotification } = useNotification();
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSend = async () => {
@@ -24,10 +26,11 @@ export const SendMessageForm = () => {
             const response = await sendMessageToServer(text);
             confirmMessage(activeChatId, tempId, response.messageId);
             updateLastMessage(text);
+            showNotification('Сообщение отправлено', 'success');
         } catch (error) {
             console.error('Fail to send', error);
             updateStatus(activeChatId, tempId, 'error');
-            alert('Ошибка отправки сообщения!');
+            showNotification('Ошибка отправки сообщения!', 'error');
         } finally {
             setIsLoading(false);
         }
