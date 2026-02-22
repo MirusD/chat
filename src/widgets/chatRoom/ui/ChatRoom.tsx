@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { useMessages, MessageCard } from '../../../entities/message';
-import { SendMessageForm } from '../../../features/sendMessage';
-import { useChats } from '../../../entities/chat';
+import { useMessages, MessageCard } from 'entities/message';
+import { SendMessageForm } from 'features/sendMessage';
+import { useChats } from 'entities/chat';
 
 export const ChatRoom = () => {
     const { activeChatId, activeChat } = useChats();

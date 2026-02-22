@@ -1,5 +1,4 @@
-import React from 'react';
-import { useChats, ChatListItem} from '../../../entities/chat';
+import { useChats, ChatListItem} from 'entities/chat';
 
 export const SideBar = () => {
     const { chats, activeChatId, setActiveChat } = useChats();

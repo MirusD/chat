@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import { createContext, useContext, useReducer, ReactNode } from 'react';
 import { IMessage } from './types';
 import { MessageState, Action, messageReducer, initialState } from './slice';
 

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Button, Input } from '../../../shared';
-import { useMessages } from '../../../entities/message';
-import { sendMessageToServer } from '../../../shared/api/chatApi';
-import { useChats } from '../../../entities/chat';
+import { useState } from 'react';
+import { Button, Input } from 'shared';
+import { useMessages } from 'entities/message';
+import { sendMessageToServer } from 'shared/api/chatApi';
+import { useChats } from 'entities/chat';
 
 export const SendMessageForm = () => {
     const [text, setText] = useState('');

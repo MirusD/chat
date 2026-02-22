@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useUser } from '../../../entities/user';
-import { checkInviteToken } from '../../../shared/api';
-import { Button, Input } from '../../../shared';
+import { useEffect, useState } from 'react';
+import { useUser } from 'entities/user';
+import { checkInviteToken } from 'shared/api';
+import { Button, Input } from 'shared';
 
 export const LoginPage = () => {
     const [status, setStatus] = useState<'checking' | 'invalid' | 'valid'>('checking');

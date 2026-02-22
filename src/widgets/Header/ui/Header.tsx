@@ -1,6 +1,5 @@
-import React from 'react';
-import { useUser } from '../../../entities/user';
-import { Button } from '../../../shared';
+import { useUser } from 'entities/user';
+import { Button } from 'shared';
 
 export const Header = () => {
     const { user, logout } = useUser();
