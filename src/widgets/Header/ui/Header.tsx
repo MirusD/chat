@@ -1,4 +1,5 @@
 import { useUser } from 'entities/user';
+import { CreateInviteButton } from 'features/createInvite';
 import { Button } from 'shared';
 
 export const Header = () => {
@@ -20,6 +21,7 @@ export const Header = () => {
                 <strong>Чат закрытого типа</strong>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <CreateInviteButton />
                     <span>{user.name}</span>
                     <Button onClick={logout} style={{ backgroundColor: '#ff4d4f', color: 'white' }}>
                         Выйти
