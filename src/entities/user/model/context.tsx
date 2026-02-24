@@ -1,41 +1,53 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect, useCallback, useReducer } from 'react';
+import { userReducer, initialState } from './slice';
+import { userApi } from '../api/userApi';
 import { IUser } from './types';
 
 interface UserContextType {
     user: IUser | null;
-    login: (name: string) => void;
-    logout: () => void;
-    isAuth: boolean;
+    updateUser: (userData: Partial<IUser>) => void;
+    clearUser: () => void;
 }
 
 const UserContext = createContext<UserContextType | null>(null);
 
 export const UserProvider = ({ children } : { children: ReactNode }) => {
-    const [user, setUser] = useState<IUser | null>(null);
+    const [userPrev, setsUserPrev] = useState<IUser | null>(null);
+    const [state, dispatch] = useReducer(userReducer, initialState);
 
     useEffect(() => {
-        const savedUser = localStorage.getItem('chat_user');
+        const savedUser = localStorage.getItem('user');
         if (savedUser) {
-            setUser(JSON.parse(savedUser));
+            dispatch({ type: 'UPDATE_USER', payload: { userData: JSON.parse(savedUser) } });
         }
     }, []);
 
-    const login = (name: string) => {
-        const newUser: IUser = {
-            id: Date.now().toString(),
-            name,
-        };
-        setUser(newUser);
-        localStorage.setItem('chat_user', JSON.stringify(newUser));
-    }
+    const updateUser = useCallback(async (userData: Partial<IUser>) => {
+        // setUser(prev => {
+        //     if (!prev) return { ...userData as IUser };
+        //     return { ...prev, ...userData };
+        // });
+        console.log(userData);
+        dispatch({ type: 'UPDATE_USER', payload: { userData } });
+        localStorage.setItem('user', JSON.stringify(userData));
+        
+        try {
+            await userApi.updateUser(userData);
+        } catch (err) {
+            if (userPrev) {
+                dispatch({ type: 'UPDATE_USER', payload: { userData: userPrev } });
+            }
+        }
+    }, []);
 
-    const logout = () => {
-        setUser(null);
-        localStorage.removeItem('chat_user');
-    };
+    const clearUser = useCallback(() => {
+        //setUser(null);
+        dispatch({type: 'CLEAR_USER', payload: null});
+        localStorage.removeItem('user');
+    }, []);
 
     return (
-        <UserContext.Provider value={{ user, login, logout, isAuth: !!user}}>
+        <UserContext.Provider value={{ user: state.user, updateUser, clearUser }}>
             {children}
         </UserContext.Provider>
     )

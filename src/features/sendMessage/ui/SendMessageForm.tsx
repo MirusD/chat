@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Input } from 'shared';
 import { useMessages } from 'entities/message';
-import { sendMessageToServer } from 'shared/api/chatApi';
+import { messageApi } from '../api/messageApi';
 import { useChats } from 'entities/chat';
 import { useNotification } from 'entities/notification';
 
@@ -23,7 +23,7 @@ export const SendMessageForm = () => {
         setIsLoading(true);
 
         try {
-            const response = await sendMessageToServer(text);
+            const response = await messageApi.sendMessage(text, activeChatId);
             confirmMessage(activeChatId, tempId, response.messageId);
             updateLastMessage(text);
             showNotification('Сообщение отправлено', 'success');

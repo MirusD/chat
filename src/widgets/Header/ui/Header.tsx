@@ -1,10 +1,13 @@
 import { useUser } from 'entities/user';
+import { useAuth } from 'features/auth';
 import { CreateInviteButton } from 'features/createInvite';
 import { Button } from 'shared';
 
 export const Header = () => {
-    const { user, logout } = useUser();
+    const { user } = useUser();
+    const { logout } = useAuth();
 
+    console.log(user);
     if (!user) return null;
 
     return (

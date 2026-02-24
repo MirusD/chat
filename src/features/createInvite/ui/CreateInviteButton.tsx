@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'shared';
 import { useNotification } from 'entities/notification';
-import { generateInviteToken } from 'shared/api/authApi';
+import { api } from 'shared/api';
 
 export const CreateInviteButton = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -9,7 +9,7 @@ export const CreateInviteButton = () => {
 
     const handleCreate = async () => {
         try {
-            const token = await generateInviteToken();
+            const token = await api.generateInvite();
 
             const link = `${window.location.origin}?invite=${token}`;
 
