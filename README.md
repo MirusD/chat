@@ -1,16 +1,34 @@
-# React + Vite
+# Мессенджер — React-приложение (FSD Architecture)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-Currently, two official plugins are available:
+Современный мессенджер с чистым UI, построенный на React с использованием методологии **Feature‑Sliced Design (FSD)** для масштабируемой и поддерживаемой архитектуры.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Демо
 
-## React Compiler
+![Messenger Demo](demo.gif) <!-- Замените на ссылку к GIF или видео -->
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Технологии
 
-## Expanding the ESLint configuration
+* **React 18** — библиотека для построения пользовательских интерфейсов.
+* **TypeScript** — статическая типизация для надёжности кода.
+* **Vite** — быстрый сборщик проекта.
+* **RTK Query** — работа с API и кэширование данных.
+* **SCSS** — стилизация компонентов.
+* **Formik + Yup** — валидация форм.
+* **FSD** — методология организации кода для масштабируемых приложений.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Установка и запуск
+
+### Предварительные требования
+* [Node.js](https://nodejs.org/) (версия 18 или выше)
+* [npm](https://www.npmjs.com/) или [yarn](https://yarnpkg.com/)
+
+### Локальный запуск
+
+1. Клонируйте репозиторий:
+   ```bash
+   git clone <URL-репозитория>
+   cd messenger-app
