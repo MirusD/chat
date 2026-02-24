@@ -30,5 +30,5 @@
 
 1. Клонируйте репозиторий:
    ```bash
-   git clone <URL-репозитория>
-   cd messenger-app
+   git clone <https://github.com/MirusD/chat.git>
+   cd chat
