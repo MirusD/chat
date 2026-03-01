@@ -1,13 +1,13 @@
 import { useUser } from 'entities/user';
 import { useAuth } from 'features/auth';
 import { CreateInviteButton } from 'features/createInvite';
+import { ThemeSwitcher } from 'features/switchTheme';
 import { Button } from 'shared';
 
 export const Header = () => {
     const { user } = useUser();
     const { logout } = useAuth();
 
-    console.log(user);
     if (!user) return null;
 
     return (
@@ -29,6 +29,7 @@ export const Header = () => {
                     <Button onClick={logout} style={{ backgroundColor: '#ff4d4f', color: 'white' }}>
                         Выйти
                     </Button>
+                    <ThemeSwitcher/>
                 </div>
             </div>
         </div>

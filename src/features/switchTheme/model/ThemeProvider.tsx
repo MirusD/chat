@@ -1,10 +1,10 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
-type Theme = 'light' | 'dark' | 'high-contrast';
+type Theme = 'light' | 'dark' ;
 
 interface ThemeContextType {
     theme: Theme;
-    toggleTheme: (newTheme: Theme) => void;
+    toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -16,13 +16,20 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     })
 
     useEffect(() => {
-        document.documentElement.className = '';
-        document.documentElement.classList.add(`theme-$(theme)`);
+        const currentThemeClass = Array.from(document.documentElement.classList)
+            .find(cls => cls.startsWith('theme-'));
+        
+        if (currentThemeClass) {
+            document.documentElement.classList.replace(currentThemeClass, `theme-${theme}`);
+        }
+        else {
+            document.documentElement.classList.add(`theme-${theme}`);
+        }
         localStorage.setItem('app-theme', theme);
     }, [theme]);
 
-    const toggleTheme = (newTheme: Theme ) => {
-        setTheme(newTheme);
+    const toggleTheme = () => {
+        setTheme(prev => prev === 'light' ? 'dark' : 'light');
     }
 
     return (

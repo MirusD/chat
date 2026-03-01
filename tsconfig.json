@@ -30,6 +30,7 @@
         "widgets/*": ["src/widgets/*"],
         "pages/*": ["src/pages/*"],
         "app/*": ["src/app/*"],
+        "app": ["src/app"],
         "@": ["src/*"]
     },
 
