@@ -5,6 +5,11 @@ import path from 'path';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  css: {
+    modules: {
+      generateScopedName: `[local]`
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

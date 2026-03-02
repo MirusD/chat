@@ -28,6 +28,16 @@
   --color-neutral-800: #1e293b;
   --color-neutral-900: #0f172a;
 
+  /* Danger colors */
+  --color-danger-50: #fef2f2;
+  --color-danger-100: #fecaca;
+  --color-danger-200: #fca5a5;
+  --color-danger-300: #f87171;
+  --color-danger-400: #ef4444;
+  --color-danger-500: #dc2626;
+  --color-danger-600: #b91c1c;
+  --color-danger-700: #9f1239;
+
   /* Semantic colors */
   --color-success: #10b981;
   --color-warning: #f59e0b;
@@ -116,6 +126,14 @@
   --border-width-thin: 1px;
   --border-width-base: 2px;
   --border-width-thick: 4px;
+
+  --border-color-primary: var(--color-primary-500);
+  --border-color-danger: var(--color-danger-500);
+  --border-color-neutral: var(--color-neutral-300);
+
+  --border-default: var(--border-width-thin) solid transparent;
+  --border-focus: var(--border-width-base) solid var(--color-primary-500);
+  --border-danger: var(--border-width-thin) solid var(--border-color-danger);
 
   --border-radius-none: 0;
   --border-radius-sm: 0.125rem; /* 2px */

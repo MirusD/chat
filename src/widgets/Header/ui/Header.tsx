@@ -26,7 +26,7 @@ export const Header = () => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <CreateInviteButton />
                     <span>{user.name}</span>
-                    <Button onClick={logout} style={{ backgroundColor: '#ff4d4f', color: 'white' }}>
+                    <Button variant='secondary' onClick={logout}>
                         Выйти
                     </Button>
                     <ThemeSwitcher/>

@@ -1,2 +1,2 @@
-export { Button } from './ui/Button';
+export { Button } from './ui/Button/Button';
 export { Input } from './ui/Input';
