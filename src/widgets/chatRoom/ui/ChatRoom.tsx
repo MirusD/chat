@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useMessages, MessageCard } from 'entities/message';
 import { SendMessageForm } from 'features/sendMessage';
 import { useChats } from 'entities/chat';
+
+import './ChatRoom.module.css';
 
 export const ChatRoom = () => {
     const { activeChatId, activeChat } = useChats();
@@ -21,17 +23,17 @@ export const ChatRoom = () => {
     if (!activeChat) return <div>Выберите чат</div>
 
     return (
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <div style={{ padding: '15px', borderBottom: '1px solid #ccc', background: '#fff' }}>
-                <h2 style={{ margin: 0 }}>{activeChat.title}</h2>
+        <div className='chat-room'>
+            <div className='chat-room__container'>
+                <h2 className='chat-room__title'>{activeChat.title}</h2>
 
-                <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
+                <div className='chat-room__messages'>
                     {messages.map((msg) => (
                         <MessageCard key={msg.id} message={msg} />
                     ))}
                 </div>
 
-                <div style={{ marginBottom: '20px' }}>
+                <div className='chat-room__send-message-field'>
                     <SendMessageForm />
                 </div>
             </div>
