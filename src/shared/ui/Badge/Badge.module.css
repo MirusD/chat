@@ -1,0 +1,24 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 50%;
+  color: white;
+  font-size: 14px;
+  line-height: 1;
+  min-width: min-content;
+}
+
+.badge_long {
+    border-radius: 30px;
+    padding: 4px 9px 4px 8px;
+}
+
+.primary {
+    background-color: var(--color-neutral-400);
+}
+
+.secondary {
+    background-color: var(--border-color-danger);
+}

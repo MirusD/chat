@@ -252,6 +252,9 @@
 --focus-ring-width: 2px;
 --focus-ring-offset: 2px;
 
+/* Default active bd */
+--active-bg: var(--border-color-primary);
+
 /* Scrollbar styles */
 --scrollbar-width: 8px;
 --scrollbar-track-color: var(--color-neutral-100);

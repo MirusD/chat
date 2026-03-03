@@ -11,9 +11,9 @@ export type ChatAction =
 
 export const initialState: ChatState = {
     chats: [
-        { id: 'chat-1', title: 'Общий чат', lastMessage: 'Привет всеь!' },
-        { id: 'chat-2', title: 'Рабочий чат', lastMessage: 'Созвон в 15:00' },
-        { id: 'chat-3', title: 'Флудилка', lastMessage: 'Как дела?'},
+        { id: 'chat-1', title: 'Общий чат', lastMessage: 'Привет всем!', lastMessageAt: new Date() },
+        { id: 'chat-2', title: 'Рабочий чат', lastMessage: 'Созвон в 15:00', lastMessageAt: new Date() },
+        { id: 'chat-3', title: 'Флудилка', lastMessage: 'Как дела?', lastMessageAt: new Date()},
     ],
     activeChatId: 'chat-1',
 };
@@ -28,7 +28,7 @@ export const chatReducer = ( state: ChatState = initialState, action: ChatAction
                 ...state,
                 chats: state.chats.map(chat =>
                     chat.id === action.payload.chatId
-                    ? { ...chat, lastMessage: action.payload.text }
+                    ? { ...chat, lastMessage: action.payload.text, lastMessageAt: new Date() }
                     : chat
                 ),
             };

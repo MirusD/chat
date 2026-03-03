@@ -5,5 +5,7 @@
 .main-page__sidebar {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    font-weight: bold; 
+    font-weight: bold;
+    max-width: 500px;
+    border-right: 1px solid #ddd;
 }

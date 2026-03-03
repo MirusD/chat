@@ -1,5 +1,9 @@
-import React from 'react';
 import { IChat } from '../model/types';
+import { Avatar } from 'shared';
+import { Badge } from 'shared';
+import { formatRelativeDate } from '../lib/formatRelativeDate';
+
+import './ChatListItem.module.css';
 
 interface Props {
     chat: IChat;
@@ -7,20 +11,28 @@ interface Props {
     onClick: () => void;
 }
 
+
 export const ChatListItem = ({ chat, isActive, onClick }: Props) => {
+    const classname = `chat ${isActive ? 'chat--active' : ''}`;
     return (
         <div
+            className={classname}
             onClick={onClick}
-            style={{
-                padding: '15px',
-                cursor: 'pointer',
-                backgroundColor: isActive ? '#e0e0e0' : 'transparent',
-                borderBottom: '1px solid #ddd',
-            }}
         >
-            <div style={{ fontWeight: 'bold'}}>{chat.title}</div>
-            <div style={{ fontSize: '12px', color: '#666', marginTop: '5px' }}>
-                {chat.lastMessage || 'Нет сообщений'}
+            <div className='chat__avatar'>
+                <Avatar />
+            </div>
+            <div>
+                <div className='chat__title'>{chat.title}</div>
+                <div className='chat__last-message'>
+                    {chat.lastMessage || 'Нет сообщений'}
+                </div>
+            </div>
+            <div className='chat__right-block'>
+                <span className='chat__date-last-message'>
+                    {chat.lastMessageAt && formatRelativeDate(chat.lastMessageAt)}
+                </span>
+                <Badge count={10} />
             </div>
         </div>
     );

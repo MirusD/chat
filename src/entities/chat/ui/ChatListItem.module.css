@@ -1,0 +1,46 @@
+.chat {
+    display: flex;
+    padding: 10px;
+    cursor:  pointer;
+    background-color: transparent;
+    border-radius: 18px;
+}
+
+.chat:hover {
+    background-color: var(--color-neutral-300);
+}
+
+.chat--active, .chat--active:hover {
+    background-color: var(--active-bg);
+    color: var(--color-text-on-primary);
+}
+
+.chat--active .chat__title {
+
+}
+
+.chat__avatar {
+    flex-basis: 13%;
+    margin-right: 10px;
+}
+
+.chat__title {
+    font-weight: bold;
+}
+
+.chat__last-message {
+    font-size: 12px;
+    margin-top: 5px; 
+}
+
+.chat__right-block {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+}
+
+.chat__date-last-message {
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}

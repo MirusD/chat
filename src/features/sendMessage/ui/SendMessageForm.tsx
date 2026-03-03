@@ -28,7 +28,6 @@ export const SendMessageForm = () => {
             updateLastMessage(text);
             showNotification('Сообщение отправлено', 'success');
         } catch (error) {
-            console.error('Fail to send', error);
             updateStatus(activeChatId, tempId, 'error');
             showNotification('Ошибка отправки сообщения!', 'error');
         } finally {

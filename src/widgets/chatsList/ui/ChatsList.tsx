@@ -5,9 +5,6 @@ export const ChatsList = () => {
 
     return (
         <div className='chats-list'>
-            <div>
-                Мессенджер
-            </div>
             {chats.map(chat => (
                 <ChatListItem
                     key={chat.id}
