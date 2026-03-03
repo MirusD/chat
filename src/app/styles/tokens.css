@@ -299,12 +299,14 @@
 
 /* Ensure all text has consistent color */
 body {
+  position: relative;
   color: var(--color-text-primary);
   background-color: var(--color-bg-app);
   font-family: var(--font-family-base);
   line-height: var(--line-height-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to right bottom, rgba(50, 200, 100, 0.5)0%, rgba(255, 69, 0, 0.1) 100%), url('../assets/smiles.jpg');
 }
 
 /* Link styles */

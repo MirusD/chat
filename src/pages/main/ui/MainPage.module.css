@@ -1,5 +1,6 @@
 .main-page {
     display: flex;
+    height: 100vh;
 }
 
 .main-page__sidebar {
@@ -8,4 +9,5 @@
     font-weight: bold;
     max-width: 500px;
     border-right: 1px solid #ddd;
+    background-color: var(--color-bg-app);
 }
