@@ -5,6 +5,8 @@ import { messageApi } from '../api/messageApi';
 import { useChats } from 'entities/chat';
 import { useNotification } from 'entities/notification';
 
+import './SendMessageForm.module.css';
+
 export const SendMessageForm = () => {
     const [text, setText] = useState('');
     const { activeChatId, updateLastMessage } = useChats();
@@ -36,12 +38,14 @@ export const SendMessageForm = () => {
     };
 
     return (
-        <div style={{ marginTop: '20px' }}>
-            <Input
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Введите сообщение"
-            />
+        <div className="send-message-form">
+            <div className="send-message-form__input">
+                <Input
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="Сообщение"
+                />
+            </div>
             <Button onClick={handleSend}>Отправить</Button>
         </div>
     );

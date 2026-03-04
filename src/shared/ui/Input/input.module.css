@@ -1,0 +1,12 @@
+.input {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: none;
+    border: none;
+    width: 100%;
+}
+
+.input:focus {
+    outline: none;
+    box-shadow: none;
+}

@@ -1,4 +1,17 @@
 .chat-room {
-    height: calc(100vh - 80px);
     width: 100%;
+}
+
+.chat-room__container {
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.chat-room__messages {
+    flex-basis: 80%;
 }

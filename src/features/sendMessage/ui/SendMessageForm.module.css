@@ -1,0 +1,24 @@
+.send-message-form {
+    margin-top: 20px;
+    display: flex;
+}
+
+.send-message-form__input {
+    position: relative;
+    flex-basis: 100%;
+    margin-right: 20px;
+}
+
+.send-message-form__input::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 10px 0 10px;
+    border-color: white transparent transparent transparent;
+    transform: rotate(304deg);
+    right: -10px;
+    bottom: -6px;
+}
+
