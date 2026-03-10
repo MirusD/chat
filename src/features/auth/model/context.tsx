@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
 import { useUser } from 'entities/user'
 import { authApi } from "../api/authApi";
- 
+import { useNavigate } from 'react-router-dom';
+
 interface AuthContextType {
     isAuth: boolean;
     login: (email: string, password: string) => Promise<void>;
@@ -14,6 +15,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: {children : ReactNode }) => {
     const { updateUser, clearUser } = useUser();
+    const navigate = useNavigate();
     const [isAuth, setIsAuth] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -39,6 +41,7 @@ export const AuthProvider = ({ children }: {children : ReactNode }) => {
             localStorage.setItem('authToken', response.token);
             setIsAuth(true);
             updateUser(response.user);
+            navigate('/');
         } catch (err) {
             const message = err instanceof Error ? err.message : 'Ошибка авторизации';
             setError(message);
@@ -46,14 +49,15 @@ export const AuthProvider = ({ children }: {children : ReactNode }) => {
         } finally {
             setIsLoading(false);
         }
-    }, [updateUser])
+    }, [updateUser, navigate])
 
     const logout = useCallback(() => {
         localStorage.removeItem('authToken');
         setIsAuth(false);
         clearUser();
-    }, [clearUser]);
-    
+        navigate('/login');
+    }, [clearUser, navigate]);
+
     return (
         <AuthContext.Provider value={{ isAuth, isLoading, error, login, logout }}>
             {children}

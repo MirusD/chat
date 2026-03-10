@@ -1,4 +1,4 @@
-import { IUser, IUserResponse } from "../model/types";
+import { IUser } from "../model/types";
 import { api } from "shared/api";
 
 export const userApi = {

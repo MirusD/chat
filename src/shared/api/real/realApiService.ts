@@ -25,6 +25,11 @@ const realApiClient: ApiClient = {
   async delete<T>(url: string): Promise<T> {
     const response = await axios.delete(url);
     return response.data;
+  },
+
+  async generateInvite(): Promise<string> {
+    const response = await axios.post('/api/invite/generate');
+    return response.data.token;
   }
 };
 

@@ -4,6 +4,7 @@ export interface ApiClient {
     put: <T, D>(url: string, data: D) => Promise<T>;
     patch: <T, D>(url: string, data: D) => Promise<T>;
     delete: <T>(url: string) => Promise<T>;
+    generateInvite: () => Promise<string>;
 }
 
 export let api: ApiClient;

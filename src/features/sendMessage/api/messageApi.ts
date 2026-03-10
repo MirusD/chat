@@ -1,9 +1,7 @@
-import { IMessageRequest, IMessageResponse } from '../model/types';
-import { api } from 'shared/api';
+import { IMessageResponse } from '../model/types';
 
 export const messageApi = {
-    async sendMessage(text: string, chatId: string): Promise<IMessageResponse> {
-        // Пока заглушка
+    async sendMessage(): Promise<IMessageResponse> {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         const isFail = Math.random() < 0.1;
 

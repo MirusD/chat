@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, ReactNode } from 'react';
 import { IMessage } from './types';
-import { MessageState, Action, messageReducer, initialState } from './slice';
+import { messageReducer, initialState } from './slice';
 
 interface MessageContextType {
     getMessages: (chatId: string) => IMessage[];
@@ -21,7 +21,7 @@ export const MessageProvider =  ({ children }: { children: ReactNode }) => {
             type: 'ADD', 
             payload: {
                 chatId,
-                msg: {id: tempId, text, user, status: 'pending' }
+                msg: {id: tempId, text, user, status: 'pending', dateAt: new Date() }
             }
         });
     };

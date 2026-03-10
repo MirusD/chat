@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../model/context';
-
+import styles from './LoginForm.module.css';
 
 export const LoginForm = () => {
     const [email, setEmail] = useState('');
@@ -13,16 +13,16 @@ export const LoginForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleSubmit} className={styles['login-form']}>
             <h2>Вход в систему</h2>
 
-            {error && <div className="error">{error}</div>}
+            {error && <div className={styles.error}>{error}</div>}
 
             <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder='Email'
+                placeholder="Email"
             />
 
             <input

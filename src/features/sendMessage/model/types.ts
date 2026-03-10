@@ -1,9 +1,9 @@
 export interface IMessageRequest {
-    text: String;
-    chatId: String;
+    text: string;
+    chatId: string;
 }
 
 export interface IMessageResponse {
-    messageId: string,
-    timestamp: number,
+    messageId: string;
+    timestamp: number;
 }

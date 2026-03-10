@@ -3,4 +3,5 @@ export interface IMessage {
     text: string;
     user: string;
     status: 'pending' | 'sent' | 'error';
+    dateAt: Date;
 }

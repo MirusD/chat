@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { MessageProvider } from 'entities/message';
 import { ChatProvider } from 'entities/chat';
 import { PublicRoute } from './PublicRoute';
@@ -8,41 +8,39 @@ import { MainPage } from 'pages/main';
 
 export const AppRouter = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/login"
-          element={
-            <PublicRoute>
-              <LoginPage />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <ChatProvider>
-                <MessageProvider>
-                  <MainPage />
-                </MessageProvider>
-              </ChatProvider>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <ChatProvider>
-                <MessageProvider>
-                  <MainPage />
-                </MessageProvider>
-              </ChatProvider>
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route
+        path="/login"
+        element={
+          <PublicRoute>
+            <LoginPage />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <ChatProvider>
+              <MessageProvider>
+                <MainPage />
+              </MessageProvider>
+            </ChatProvider>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <ChatProvider>
+              <MessageProvider>
+                <MainPage />
+              </MessageProvider>
+            </ChatProvider>
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 };

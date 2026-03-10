@@ -1,19 +1,30 @@
-import React from 'react';
 import { IMessage } from '../model/types';
 
-export const MessageCard = ({ message }: { message: IMessage }) => {
-    return (
-        <div style={{ 
-            border: '1px solid #ccc', 
-            margin: '5px 0', 
-            padding: '10px',
-            backgroundColor: message.status === 'pending' ? '#f0f0f0' : '#fff',
-            fontStyle: message.status === 'pending' ? 'italic' : 'normal'
-        }}>
-            <strong>{message.user}: </strong>
-            <span>{message.text}</span>
+import './MessageCard.module.css';
 
-            <span style={{float: 'right', fontSize: '12px'}}>
+
+function getHoursAndMinutes(date: Date | string | number): string {
+  const d = new Date(date);
+  const hours = String(d.getHours()).padStart(2, '0');
+  const minutes = String(d.getMinutes()).padStart(2, '0');
+  return `${hours}:${minutes}`;
+}
+
+export const MessageCard = ({ message }: { message: IMessage }) => {
+    const isOwn = message.user === 'Вы';
+
+    return (
+        <div className={`message-card ${isOwn ? 'message-card_own' : ''}`}>
+            {/* <strong>{message.user}: </strong> */}
+            <span className='message-card__text'>
+                {message.text}
+            </span>
+
+            <span className='message-card__date'>
+                {getHoursAndMinutes(message.dateAt)}
+            </span>
+
+            <span className='message-card__status'>
                 {message.status === 'pending' && '⏳'}
                 {message.status === 'sent' && '✅'}
                 {message.status === 'error' && '❌'}

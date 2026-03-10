@@ -1,0 +1,61 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 400px;
+    margin: 0 auto;
+    padding: var(--space-6);
+    background-color: var(--color-bg-elevated);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.login-form h2 {
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.login-form input {
+    padding: var(--space-3) var(--space-4);
+    border: var(--border-default);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    transition: border-color var(--transition-normal);
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.login-form button {
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--color-primary-500);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: background-color var(--transition-normal);
+}
+
+.login-form button:hover {
+    background-color: var(--color-primary-600);
+}
+
+.login-form button:disabled {
+    background-color: var(--color-neutral-300);
+    cursor: not-allowed;
+}
+
+.login-form .error {
+    padding: var(--space-3);
+    background-color: var(--color-danger-50);
+    color: var(--color-danger-600);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    text-align: center;
+}
